@@ -13,14 +13,14 @@ def genre_dao():
     genre_dao = GenreDAO(None)
 
     # creating objects according UML to fill in virtual db
-    genre_1 = Genre(id=1, name='John Doe')
-    genre_2 = Genre(id=2, name='Jane Doe')
-    genre_3 = Genre(id=3, name='Jan Itor')
+    genre_1 = Genre(id=1, name='comedy')
+    genre_2 = Genre(id=2, name='drama')
+    genre_3 = Genre(id=3, name='porn')
 
     # replace result of relative methods with data in expected formats or types
     genre_dao.get_one = MagicMock(return_value=genre_3)
     genre_dao.get_all = MagicMock(return_value=[genre_1, genre_2, genre_3])
-    genre_dao.create = MagicMock(return_value=Genre(id=4, name='Head Dick'))
+    genre_dao.create = MagicMock(return_value=Genre(id=4, name='horror'))
     genre_dao.delete = MagicMock()
     genre_dao.update = MagicMock()
 
@@ -64,7 +64,7 @@ class TestGenreService:
         applying tested method to genre_service, checking if data from mocked dao appears
         """
         genre_data = {
-            "name": "dir dir"
+            "name": "biopic"
         }
 
         genre = self.genre_service.create(genre_data)
@@ -82,7 +82,7 @@ class TestGenreService:
         applying tested method to genre_service, no assert as method returns nothing
         """
         genre_data = {
-            "id": 2,
-            "name": "dir dir"
+            "id": 3,
+            "name": "biopic"
         }
         self.genre_service.update(genre_data)
